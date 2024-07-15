@@ -10,8 +10,8 @@ cd my-app
 npm start
 ```
 
-Here are some commands to configure docker-compose:
+Command to start services:
 
 ```shell
-
+docker-compose up
 ```
