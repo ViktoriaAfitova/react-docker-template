@@ -2,7 +2,7 @@
 
 ## Commands to know
 
-Start
+Start:
 
 ```shell
 npx create-react-app my-app
