@@ -15,3 +15,5 @@ Start services:
 ```shell
 docker-compose up
 ```
+
+Install dependencies:
