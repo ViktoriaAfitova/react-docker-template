@@ -1,4 +1,23 @@
 ###
-GET http://localhost:3001
+GET http://localhost:3002/setup
 
 ###
+GET http://localhost:3002
+
+###
+POST http://localhost:3002
+Content-Type: application/json
+
+{
+  "name": "name1",
+  "location": "location1"
+}
+
+###
+POST http://localhost:3002
+Content-Type: application/json
+
+{
+  "name": "name2",
+  "location": "location2"
+}

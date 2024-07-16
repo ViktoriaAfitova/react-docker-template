@@ -4,7 +4,6 @@ ENV PORT=$PORT
 WORKDIR /app
 COPY package.json ./
 RUN npm install
-COPY app.js ./
-COPY db.js ./
+COPY . .
 EXPOSE ${PORT}
 CMD ["node", "app.js"]
