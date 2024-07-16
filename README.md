@@ -17,3 +17,11 @@ docker-compose up
 ```
 
 Install dependencies:
+
+```shell
+npm install express
+```
+
+```shell
+npm install pg
+```
