@@ -1,11 +1,11 @@
 const express = require('express');
 const { Pool } = require('pg');
 
-const db  = new Pool({
-  host: 'db',
-  user: 'userTest',
-  password: 'passwordTest',
-  database: 'databaseTest'
+const db = new Pool({
+  host: process.env.DB_HOST || 'db',
+  user: process.env.DB_USER || 'userTest',
+  password: process.env.DB_PASSWORD || 'passwordTest',
+  database: process.env.DB_NAME || 'databaseTest'
 });
 
 const hostname = '0.0.0.0';
@@ -18,11 +18,11 @@ app.use(express.urlencoded({ extended: true }));
 // routes
 app.get('/setup', async (req, res) => {
   try {
-    await db.query('CREATE TABLE schools( id SERIAL PRIMARY KEY, name VARCHAR(100), address VARCHAR(100))');
-    res.status(200).send({message: 'Successfully created table'});
+    await db.query('CREATE TABLE IF NOT EXISTS schools (id SERIAL PRIMARY KEY, name VARCHAR(100), address VARCHAR(100))');
+    res.status(200).send({ message: 'Successfully ensured table exists' });
   } catch (error) {
-    res.sendStatus(500);
-  };
+    res.status(500).send({ error: 'Internal Server Error' });
+  }
 });
 
 app.post('/', async (req, res) => {
