@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const { Pool } = require('pg');
 
 const db = new Pool({
@@ -8,10 +9,16 @@ const db = new Pool({
   database: process.env.DB_NAME || 'databaseTest'
 });
 
+const corsOptions = {
+  origin: 'http://localhost:3000',
+  optionsSuccessStatus: 200
+};
+
 const hostname = '0.0.0.0';
 const port = process.env.PORT || 3001;
 
 const app = express();
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
