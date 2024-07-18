@@ -1,23 +1,14 @@
 ###
-GET http://localhost:3002/setup
-
-###
-POST http://localhost:3002
-Content-Type: application/json
-
-{
-  "name": "name1",
-  "location": "location1"
-}
-
-###
-POST http://localhost:3002
-Content-Type: application/json
-
-{
-  "name": "name2",
-  "location": "location2"
-}
-
-###
 GET http://localhost:3002
+
+###
+POST http://localhost:3002/users
+Content-Type: application/json
+
+{
+  "name": "testName",
+  "location": "testName"
+}
+
+###
+GET http://localhost:3002/users/all
