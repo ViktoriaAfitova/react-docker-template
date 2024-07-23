@@ -1,9 +1,9 @@
-name: FIRST
+name: FIRST #naming
 
-on: [push]
+on: [push] #method of running
 
 jobs: 
-  build: 
+  build: #jobs naming
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
