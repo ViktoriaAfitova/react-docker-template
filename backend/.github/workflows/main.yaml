@@ -1,6 +1,7 @@
 name: MAIN #naming
 
-on: [push] #method of running
+on: 
+  push: #method of running
 
 jobs: 
   build: #jobs naming
