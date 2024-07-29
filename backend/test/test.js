@@ -21,8 +21,8 @@ describe('HTTP Server', () => {
     chai.request(server)
       .get('/')
       .end((err, res) => {
-        expect(res).to.have.st(200);
-        expect(res.text).to.e('Server running');
+        expect(res).to.have.status(200); 
+        expect(res.text).to.equal('Server running'); 
       done();
     });
   });
