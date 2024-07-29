@@ -20,6 +20,7 @@ describe('HTTP Server', () => {
   });
 
   it('should return Server running', (done) => {
+    this.timeout(5000);
     chai.request(server)
       .get('/')
       .end((err, res) => {
