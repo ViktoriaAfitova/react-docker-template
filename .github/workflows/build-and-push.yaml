@@ -23,4 +23,4 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ vars.DOCKER_USERNAME }}/first-app:latest
+          tags: ${{ vars.DOCKER_USERNAME }}/react-docker-template:latest
