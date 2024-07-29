@@ -10,7 +10,7 @@ describe('HTTP Server', () => {
   let server;
   before((done) => {
     server = http.createServer(app);
-    server.listen(3001, done);
+    server.listen(3002, done);
   });
 
   after((done) => {
