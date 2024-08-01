@@ -8,17 +8,32 @@ const expect = chai.expect;
 
 describe('HTTP Server', () => {
   let server;
-  const testPort = 3002;
+  let port = 3001; // Start with port 3001
 
   before((done) => {
     server = http.createServer(app);
-    server.listen(testPort, (err) => {
-      if (err) {
-        console.error(`Failed to start server on port ${testPort}:`, err);
-        return done(err);
+    
+    const attemptListen = (attemptsLeft) => {
+      if (attemptsLeft <= 0) {
+        done(new Error('Failed to find an open port'));
+        return;
       }
-      done();
-    });
+
+      server.listen(port, (err) => {
+        if (err && err.code === 'EADDRINUSE') {
+          // The port is already in use, increase the port and wake it up again
+          port++;
+          attemptListen(attemptsLeft - 1);
+        } else if (err) {
+          done(err);
+        } else {
+          console.log(`Server running at http://localhost:${port}/`);
+          done();
+        }
+      });
+    };
+
+    attemptListen(10); // Trying 10 different ports
   });
 
   after((done) => {
