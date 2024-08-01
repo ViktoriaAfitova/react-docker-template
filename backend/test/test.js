@@ -1,29 +1,34 @@
-// const chai = require('chai');
-// const chaiHttp = require('chai-http');
-// const http = require('http');
-// const { app } = require('../app');
+const chai = require('chai');
+const chaiHttp = require('chai-http');
+const http = require('http');
+const { app } = require('../app');
 
-// chai.use(chaiHttp);
-// const expect = chai.expect;
+chai.use(chaiHttp);
+const expect = chai.expect;
 
-// describe('HTTP Server', () => {
-//   let server;
-//   before((done) => {
-//     server = http.createServer(app);
-//     server.listen(3001, done);
-//   });
+describe('HTTP Server', () => {
+  let server;
 
-//   after((done) => {
-//     done()
-//   });
+  before((done) => {
+    server = http.createServer(app);
+    server.listen(3001, done);
+  });
 
-//   it('should return Server running', (done) => {
-//     chai.request(server)
-//       .get('/')
-//       .end((err, res) => {
-//         expect(res).to.have.status(200); 
-//         expect(res.text).to.equal('Server running'); 
-//       done();
-//     });
-//   });
-// });
+  after((done) => {
+    if (server && server.listening) {
+      server.close(done);
+    } else {
+      done();
+    }
+  });
+
+  it('should return "Server running"', (done) => {
+    chai.request(server)
+      .get('/')
+      .end((err, res) => {
+        expect(res).to.have.status(200);
+        expect(res.text).to.equal('Server running');
+        done();
+      });
+  });
+});
