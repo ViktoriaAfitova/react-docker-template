@@ -8,27 +8,22 @@ const expect = chai.expect;
 
 describe('HTTP Server', () => {
   let server;
-
   before((done) => {
     server = http.createServer(app);
     server.listen(3001, done);
   });
 
   after((done) => {
-    if (server && server.listening) {
-      server.close(done);
-    } else {
-      done();
-    }
+    done()
   });
 
-  it('should return "Server running"', (done) => {
+  it('should return Server running', (done) => {
     chai.request(server)
       .get('/')
       .end((err, res) => {
-        expect(res).to.have.status(200);
-        expect(res.text).to.equal('Server running');
-        done();
-      });
+        expect(res).to.have.status(200); 
+        expect(res.text).to.equal('Server running'); 
+      done();
+    });
   });
 });
